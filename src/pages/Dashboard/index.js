@@ -11,7 +11,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     async function loadEvents() {
-      const response = await api.get('organizing');
+      const response = await api.get('meetups');
 
       const data = response.data.map(meetup => ({
         ...meetup,
