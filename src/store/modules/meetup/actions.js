@@ -1,7 +1,7 @@
-export function addMeetup(title, description, date, location) {
+export function createNewMeetup(data) {
   return {
-    type: '@meetup/ADD_MEETUP',
-    payload: { title, description, date, location },
+    type: '@meetup/CREATE_NEW_MEETUP',
+    payload: { data },
   };
 }
 

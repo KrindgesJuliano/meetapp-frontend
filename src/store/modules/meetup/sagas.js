@@ -22,16 +22,21 @@ export function* updateMeetup({ payload }) {
   }
 }
 
-export function* addMeetup({ payload }) {
+export function* createMeetup({ payload }) {
   try {
-    const { title, description, date, location } = payload;
+    const { title, description, date, location, banner } = payload.data;
 
-    yield call(api.post, 'meetups', {
+    const meetup = {
       title,
       description,
       date,
       location,
-    });
+      banner,
+    };
+
+    yield call(api.post, 'meetups', meetup);
+
+    toast.success('Novo Meetup criado com sucesso');
   } catch (err) {
     toast.error('Falha ao criar o Meetup, verifique os dados');
     yield put(updateMeetupFailure());
@@ -39,6 +44,6 @@ export function* addMeetup({ payload }) {
 }
 
 export default all([
-  takeLatest('@meetup/ADD_MEETUP', addMeetup),
+  takeLatest('@meetup/CREATE_NEW_MEETUP', createMeetup),
   takeLatest('@meetup/UPDATE_MEETUP_REQUEST', updateMeetup),
 ]);
