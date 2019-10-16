@@ -5,17 +5,17 @@ export function createNewMeetup(data) {
   };
 }
 
+export function openMeetupDetails(meetup) {
+  return {
+    type: '@meetup/OPEN_MEETUP_DETAILS',
+    payload: { meetup },
+  };
+}
+
 export function updateMeetupRequest(data) {
   return {
     type: '@meetup/UPDATE_MEETUP_REQUEST',
     payload: { data },
-  };
-}
-
-export function updateMeetupSuccess(meetup) {
-  return {
-    type: '@meetup/UPDATE_MEETUP_SUCCESS',
-    payload: { meetup },
   };
 }
 

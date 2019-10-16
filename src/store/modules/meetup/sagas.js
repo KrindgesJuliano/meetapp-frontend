@@ -1,21 +1,19 @@
 import { takeLatest, call, put, all } from 'redux-saga/effects';
-
 import { toast } from 'react-toastify';
+
 import api from '~/services/api';
 
-import { updateMeetupFailure, updateMeetupSuccess } from './actions';
+import { updateMeetupFailure } from './actions';
 
 export function* updateMeetup({ payload }) {
   try {
-    const { title, description, ...rest } = payload.data;
+    const { title, description, banner_id, ...rest } = payload.data;
 
-    const meetup = { title, description, ...rest };
+    const meetup = { title, description, banner_id, ...rest };
 
-    const response = yield call(api.put, 'meetups', meetup);
+    yield call(api.put, 'meetups', meetup);
 
     toast.success('Meetup atualizado com sucesso!');
-
-    yield put(updateMeetupSuccess(response.data));
   } catch (err) {
     toast.error('Falha ao atualiza o Meetup, verifique os dados');
     yield put(updateMeetupFailure());

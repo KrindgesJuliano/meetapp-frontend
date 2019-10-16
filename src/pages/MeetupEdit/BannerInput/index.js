@@ -38,12 +38,12 @@ export default function BannerInput() {
   return (
     <Container>
       <label htmlFor="banner">
-        <img
-          src={
-            preview || 'https://api.adorable.io/avatars/50/abott@adorable.png'
-          }
-          alt=""
-        />
+        {preview ? (
+          <img src={preview} alt="" />
+        ) : (
+          <h2>Selecionar uma imagem</h2>
+        )}
+
         <input
           type="file"
           id="banner"
