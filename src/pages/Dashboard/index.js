@@ -1,29 +1,46 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { format, parseISO } from 'date-fns';
+import pt from 'date-fns/locale/pt';
 
 import { MdLoyalty, MdHighlightOff } from 'react-icons/md';
+import { openMeetupDetails } from '~/store/modules/meetup/actions';
+
 import { Container, Event } from './styles';
 
 import api from '~/services/api';
+import history from '~/services/history';
 
 export default function Dashboard() {
   const [event, setEvent] = useState([]);
+  const [date, setDate] = useState(new Date());
+  const dispatch = useDispatch();
+
+  const dateFormatted = useMemo(
+    () => format(date, 'MM/dd/yyyy', { locale: pt }),
+    [date]
+  );
 
   useEffect(() => {
     async function loadEvents() {
-      const response = await api.get('organizing');
-
+      const response = await api.get('organizing', { params: { date } });
       const data = response.data.map(meetup => ({
         ...meetup,
+        formattedDate: format(parseISO(meetup.date), "MMMM d', às' hh'h'mm", {
+          locale: pt,
+        }),
       }));
-
       setEvent(data);
     }
 
     loadEvents();
-  }, []);
+  }, [date]);
 
-  console.tron.log(event);
+  function handleOpenDetails(meetup) {
+    dispatch(openMeetupDetails(meetup));
+    history.push('/details');
+  }
 
   return (
     <Container>
@@ -39,10 +56,10 @@ export default function Dashboard() {
 
       <ul>
         {event.map(meetup => (
-          <Event key={meetup.id}>
+          <Event key={meetup.id} onClick={() => handleOpenDetails(meetup)}>
             <strong>{meetup.title}</strong>
             <aside>
-              <span>24 de Junho, as 20h</span>
+              <span>{meetup.formattedDate}</span>
               <button type="button">
                 <MdHighlightOff size={24} color="#fff" />
               </button>

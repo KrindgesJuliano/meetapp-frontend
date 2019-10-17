@@ -27,7 +27,7 @@ export default function MeetupDetais() {
         <img src={meetup.imagem.url} alt="" />
         <p>{meetup.description}</p>
         <footer>
-          <time>{meetup.date}</time>
+          <time>{meetup.formattedDate}</time>
           <location>{meetup.location}</location>
         </footer>
       </Details>

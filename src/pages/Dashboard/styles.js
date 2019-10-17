@@ -54,6 +54,7 @@ export const Event = styled.li`
   background: rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   padding: 0 30px 0 30px;
+  cursor: pointer;
 
   font-weight: bold;
   font-size: 18px;
