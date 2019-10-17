@@ -54,7 +54,7 @@ export const Details = styled.div`
   img {
     width: 100%;
     max-height: 300px;
-    object-fit: fill;
+    object-fit: cover;
   }
 
   p {

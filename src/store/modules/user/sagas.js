@@ -8,8 +8,6 @@ export function* updateProfile({ payload }) {
   try {
     const { name, email, ...rest } = payload.data;
 
-    console.tron.log(rest);
-
     const profile = {
       name,
       email,

@@ -48,38 +48,36 @@ export const Container = styled.div`
         color: rgba(255, 255, 255, 0.5);
       }
     }
-    }
-
-    span {
-      color: #fb6f91;
-      align-self: flex-start;
-      margin: 0 0 10px;
-      font-weight: bold;
-      text-align: center;
-    }
-
-    button {
-      background: #f94d6a;
-      border: 0;
-      height: 42px;
-      width: 172px;
-      border-radius: 4px;
-      margin: 0;
-      display: flex;
-      justify-content: space-around;
-      padding: 0 10px 0 10px;
-      align-self: flex-end;
-
-      color: #ffffff;
-      font-weight: bold;
-      font-size: 18px;
-      line-height: 21px;
-      transition: background 0.2s;
-
-      &:hover {
-        background: ${lighten(0.05, '#f94d6a')};
-      }
-    }
   }
 
+  span {
+    color: #fb6f91;
+    align-self: flex-start;
+    margin: 0 0 10px;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  button {
+    background: #f94d6a;
+    border: 0;
+    height: 42px;
+    width: 172px;
+    border-radius: 4px;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    padding: 0 10px 0 10px;
+    align-self: flex-end;
+
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 21px;
+    transition: background 0.2s;
+
+    &:hover {
+      background: ${lighten(0.05, '#f94d6a')};
+    }
+  }
 `;

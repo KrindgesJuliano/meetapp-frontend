@@ -1,14 +1,11 @@
-import React, { useSelector } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { MdSystemUpdateAlt, MdViewHeadline } from 'react-icons/md';
 
 import { Container, Details, EditButton, Cancelbutton } from './styles';
 
-import Banner from '~/assets/banner.png';
-
 export default function MeetupDetais() {
-  const meetup = useSelector(state => state.event);
-
-  console.tron.log(state => state.event);
+  const meetup = useSelector(state => state.meetup.event);
 
   return (
     <Container>
@@ -27,7 +24,7 @@ export default function MeetupDetais() {
       </header>
 
       <Details>
-        <img src={Banner} alt="" />
+        <img src={meetup.imagem.url} alt="" />
         <p>{meetup.description}</p>
         <footer>
           <time>{meetup.date}</time>
