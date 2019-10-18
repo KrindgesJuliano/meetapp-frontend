@@ -2,6 +2,7 @@ import { takeLatest, call, put, all } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
 
 import api from '~/services/api';
+import history from '~/services/history';
 
 import { updateMeetupFailure } from './actions';
 
@@ -41,7 +42,20 @@ export function* createMeetup({ payload }) {
   }
 }
 
+export function* cancelMeetup({ payload }) {
+  try {
+    const meetupId = payload.id;
+    yield call(api.delete, `meetups/${meetupId}`);
+
+    history.pushState('/');
+  } catch (err) {
+    console.tron.log({ err });
+    yield put(updateMeetupFailure());
+  }
+}
+
 export default all([
   takeLatest('@meetup/CREATE_NEW_MEETUP', createMeetup),
   takeLatest('@meetup/UPDATE_MEETUP_REQUEST', updateMeetup),
+  takeLatest('@meetup/CANCEL_MEETUP_REQUEST', cancelMeetup),
 ]);

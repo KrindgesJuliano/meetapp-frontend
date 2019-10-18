@@ -1,11 +1,25 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { MdSystemUpdateAlt, MdViewHeadline } from 'react-icons/md';
+
+import history from '~/services/history';
+
+import { cancelMeetupRequest } from '~/store/modules/meetup/actions';
 
 import { Container, Details, EditButton, Cancelbutton } from './styles';
 
 export default function MeetupDetais() {
   const meetup = useSelector(state => state.meetup.event);
+
+  if (!meetup) {
+    history.goBack();
+  }
+
+  const dispatch = useDispatch();
+
+  function handleCancel() {
+    dispatch(cancelMeetupRequest(meetup.id));
+  }
 
   return (
     <Container>
@@ -16,7 +30,7 @@ export default function MeetupDetais() {
             <MdViewHeadline />
             Editar
           </EditButton>
-          <Cancelbutton type="button">
+          <Cancelbutton type="button" onClick={() => handleCancel()}>
             <MdSystemUpdateAlt />
             Cancelar
           </Cancelbutton>
@@ -24,7 +38,7 @@ export default function MeetupDetais() {
       </header>
 
       <Details>
-        <img src={meetup.imagem.url} alt="" />
+        <img src={meetup.imagem ? meetup.imagem.url : ''} alt="" />
         <p>{meetup.description}</p>
         <footer>
           <time>{meetup.formattedDate}</time>

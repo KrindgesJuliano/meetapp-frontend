@@ -10,7 +10,7 @@ import Datepicker from '~/components/Datepicker';
 
 import { Container } from './styles';
 
-export default function MeetupEdit() {
+export default function MeetupForm() {
   const meetup = useSelector(state => state.meetup.event);
   const dispatch = useDispatch();
 

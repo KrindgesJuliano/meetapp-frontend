@@ -19,6 +19,13 @@ export function updateMeetupRequest(data) {
   };
 }
 
+export function cancelMeetupRequest(id) {
+  return {
+    type: '@meetup/CANCEL_MEETUP_REQUEST',
+    payload: { id },
+  };
+}
+
 export function updateMeetupFailure() {
   return {
     type: '@meetup/UPDATE_MEETUP_FAILURE',
