@@ -4,7 +4,10 @@ import { MdSystemUpdateAlt, MdViewHeadline } from 'react-icons/md';
 
 import history from '~/services/history';
 
-import { cancelMeetupRequest } from '~/store/modules/meetup/actions';
+import {
+  cancelMeetupRequest,
+  openMeetupEdit,
+} from '~/store/modules/meetup/actions';
 
 import { Container, Details, EditButton, Cancelbutton } from './styles';
 
@@ -21,12 +24,17 @@ export default function MeetupDetais() {
     dispatch(cancelMeetupRequest(meetup.id));
   }
 
+  function handleEdit() {
+    dispatch(openMeetupEdit(meetup));
+    history.push('/edit');
+  }
+
   return (
     <Container>
       <header>
         <h1>{meetup.title}</h1>
         <aside>
-          <EditButton type="button">
+          <EditButton type="button" onClick={() => handleEdit(meetup)}>
             <MdViewHeadline />
             Editar
           </EditButton>

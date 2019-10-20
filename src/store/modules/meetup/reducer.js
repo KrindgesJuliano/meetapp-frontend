@@ -1,7 +1,9 @@
 import produce from 'immer';
 
 const INITIAL_STATE = {
-  event: '',
+  event: null,
+  editEvent: null,
+  isUpdate: false,
 };
 
 export default function auth(state = INITIAL_STATE, action) {
@@ -15,8 +17,14 @@ export default function auth(state = INITIAL_STATE, action) {
         draft.event = action.payload.meetup;
         break;
       }
+      case '@meetup/OPEN_MEETUP_EDIT': {
+        draft.editEvent = action.payload.meetup;
+        draft.isUpdate = true;
+        break;
+      }
       case '@meetup/UPDATE_MEETUP_SUCCESS': {
-        draft.event = action.payload.meetup;
+        draft.editEvent = null;
+        draft.isUpdate = false;
         break;
       }
       default:

@@ -12,10 +12,23 @@ export function openMeetupDetails(meetup) {
   };
 }
 
+export function openMeetupEdit(meetup) {
+  return {
+    type: '@meetup/OPEN_MEETUP_EDIT',
+    payload: { meetup },
+  };
+}
+
 export function updateMeetupRequest(data) {
   return {
     type: '@meetup/UPDATE_MEETUP_REQUEST',
     payload: { data },
+  };
+}
+
+export function updateMeetupSuccess() {
+  return {
+    type: '@meetup/UPDATE_MEETUP_SUCCESS',
   };
 }
 
