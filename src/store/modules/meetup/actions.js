@@ -19,10 +19,10 @@ export function openMeetupEdit(meetup) {
   };
 }
 
-export function updateMeetupRequest(data) {
+export function updateMeetupRequest(data, editMeetup) {
   return {
     type: '@meetup/UPDATE_MEETUP_REQUEST',
-    payload: { data },
+    payload: { data, editMeetup },
   };
 }
 

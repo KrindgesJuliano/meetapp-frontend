@@ -8,11 +8,14 @@ import { updateMeetupFailure, updateMeetupSuccess } from './actions';
 
 export function* updateMeetup({ payload }) {
   try {
-    const { title, description, banner_id, ...rest } = payload.data;
+    const { title, description, banner, ...rest } = payload.data;
+    const { id } = payload.editMeetup;
 
-    const meetup = { title, description, banner_id, ...rest };
+    const meetup = { title, description, banner, ...rest };
 
-    yield call(api.put, 'meetups', meetup);
+    console.tron.log(meetup);
+
+    yield call(api.put, `meetups/${id}`, meetup);
 
     yield put(updateMeetupSuccess());
 
@@ -61,6 +64,6 @@ export function* cancelMeetup({ payload }) {
 
 export default all([
   takeLatest('@meetup/CREATE_NEW_MEETUP', createMeetup),
-  takeLatest('@meetup/UPDATE_MEETUP_SUCCESS', updateMeetup),
+  takeLatest('@meetup/UPDATE_MEETUP_REQUEST', updateMeetup),
   takeLatest('@meetup/CANCEL_MEETUP_REQUEST', cancelMeetup),
 ]);

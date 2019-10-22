@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import ReactDatePicker from 'react-datepicker';
+import ptBR from 'date-fns/locale/pt-BR';
+import PropTypes from 'prop-types';
 
 import { useField } from '@rocketseat/unform';
 
@@ -30,10 +32,11 @@ export default function Datepicker({ name }) {
         onChange={date => setSelected(date)}
         ref={ref}
         minDate={new Date()}
-        timeFormat="p"
-        dateFormat="Pp"
+        locale={ptBR}
+        dateFormat="MMMM d, yyyy HH:mm"
         showTimeSelect
         showDisabledMonthNavigation
+        placeholderText="Data do Meetup"
       />
       {error && <span>{error}</span>}
     </>
